@@ -25,6 +25,8 @@ The measured file is inferred to be this one: `eval_infer_hf.py` downloads `v2/b
 `frame -> person detector (yolo26s.pt, class 0, conf 0.25) -> crop per person -> safetyvision v2 -> helmet score and vest score -> compare with threshold -> violator / compliant / unknown`
 
 - The model runs on a **crop of each person**, not on the full frame. Changing this changes the numbers.
+- Person detector detections (`yolo26s.pt`, class 0, conf 0.25) are matched greedily to the ground-truth `Person` boxes at IoU 0.5. A ground-truth person with no match counts as missed.
+- The PPE model runs on the crop at `conf=0.001`. The score of an item is the **maximum confidence** among its detections of that class (`Hardhat`, `Safety Vest`). The threshold is applied to this score.
 - Positive class for all metrics: **violator** (no helmet / no vest).
 - Cases with an unknown ground-truth state are **excluded** from the metrics (counts below).
 
