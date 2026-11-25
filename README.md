@@ -16,7 +16,9 @@ Evaluation lab for the PPE part (helmet and vest) of an industrial safety monito
 | `log_mlflow.py` | Old logger (experiment `ppe-baseline-eval`) |
 | `log_mlflow_models.py` | Logs 10 runs (5 models on 2 datasets) in experiment `ppe-model-selection` |
 | `register_champion.py` | Registers the provisional champion in the local MLflow registry with alias `champion` |
-| `pipeline_demo.py` | Demo script (not documented yet) |
+| `ppe_model.py` | Fixed interface: one person crop in, helmet and vest scores out. The model is chosen by name; the default is the provisional champion, pinned by revision and sha256 |
+| `test_ppe_model.py` | Tests for the interface logic (no weights needed): `python test_ppe_model.py` |
+| `pipeline_demo.py` | Early demo: person detector, then YOLOE on each person crop, saves annotated images (not the champion) |
 | `requirements-lock.txt` | Package versions of the lab environment |
 
 Scripts are meant to run from a local `work/` folder: `cd work && python ../script.py`.
